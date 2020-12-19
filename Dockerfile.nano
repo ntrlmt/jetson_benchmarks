@@ -2,8 +2,7 @@ FROM nvcr.io/nvidia/l4t-ml:r32.4.4-py3
 
 RUN apt update && \ 
     apt install -y sudo && \ 
-    apt install -y unzip && \
-    apt install -y nvidia-jetpack
+    apt install -y unzip
 COPY . /jetson_benchmarks
 WORKDIR /jetson_benchmarks
 RUN mkdir models && sh install_requirements.sh && \
