@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  agx_all:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - JETPACK_VERSION=4.4
+        - JETSON_MODEL=xavier
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - /tmp/.X11-unix/:/tmp/.X11-unix
+    privileged: true
+    network_mode: "host"
+    command: bash -c "echo \n | python3 benchmark.py --all --csv_file_path /jetson_benchmarks/benchmark_csv/nx-benchmarks.csv --model_dir /jetson_benchmarks/models  --jetson_devkit xavier --gpu_freq 1377000000 --dla_freq 1395200000 --power_mode 0"
