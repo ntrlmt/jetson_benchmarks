@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  nano_all:
+  nx_all:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         - JETPACK_VERSION=4.4
-        - JETSON_MODEL=tx2-nano
+        - JETSON_MODEL=nx
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
@@ -15,4 +15,4 @@ services:
       - /tmp/.X11-unix/:/tmp/.X11-unix
     privileged: true
     network_mode: "host"
-    command: bash -c "echo \n | python3 benchmark.py --all --csv_file_path /jetson_benchmarks/benchmark_csv/tx2-nano-benchmarks.csv --model_dir /jetson_benchmarks/models --jetson_devkit nano --gpu_freq 921600000 --power_mode 0 --precision fp16"
+    command: bash -c "echo \n | python3 benchmark.py --all --csv_file_path /jetson_benchmarks/benchmark_csv/nx-benchmarks.csv --model_dir /jetson_benchmarks/models"
